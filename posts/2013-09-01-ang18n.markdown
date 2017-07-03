@@ -1,0 +1,389 @@
+---
+layout: post
+title: "ang18n"
+date: 2013-09-01 12:28
+comments: true
+external-url: 
+categories: coding, web
+---
+
+*tl;dr: This post describes how to build a multi-lingual
+[angular.js][angular] [application][github] with a [Play!][play] backend.*
+
+I get asked from time to time what I would use to start a new greenfield
+web project these days. Of course the answer is always 'it depends'.
+Nonetheless, a lot of the times, [angular.js][angular] comes up in those discussions.
+
+[Angular.js][angular] is a client-side Model-View-Whatever framework
+developed by Google with a lot of nice aspects and features. It provides
+robust data binding to the DOM, URL routing for single-page applications
+and has a very nice way to flexibly extend HTML for nice, declarative
+code. [Angular.js][angular] has no requirements for the server side so
+the question remains, what one might use on the server.
+
+I've long been suspecting that [angular.js][angular] would play very
+well with a [Play!][play] server but up until now I never actually tried it.
+The Play! framework is a stateless, lightweight and scalable web framework written in
+Scala that allows developing applications in either Scala or Java. One
+of the very nice aspects of Play! is its template language, which is in
+fact also Scala. This gives us compiled, statically type checked
+templates. While this might seem irrelevant in the face of single-page
+application, I believe this actually enables us to overcome one of
+[angulars][angular] more serious shortcomings, namely internationalization (i18n).
+
+While [angular.js][angular] does not completely ignore i18n, I think out
+of the box it lacks an opinionated way of how to handle i18n, forcing
+developers to come up with their own ways to handle multi-language
+applications.
+
+So, I too came up with my own way, combining the strengths of
+[Play!][play] and [angular.js][angular] to handle i18n. As an example, I created a useless little todo-list
+app (the hello world of web applications). The todo-list uses Play!
+2.1.3 on the server. The front-end is written in angular.js 1.2.0rc1 (using
+[CoffeeScript][coffee], just because) and the ugly styling was my first
+exposure to the new [Bootstrap v3][bootstrap]. An instance of the app is
+hosted on [Heroku][heroku] and can be laughed at [here][example]. And
+the code is of course over on [GitHub][github].
+
+{% img http://com.notadomain.blogbucket.s3.amazonaws.com/code/todo-app.png My lame todo app %}
+
+## What is required for proper i18n?
+
+Proper multi language applications have to take care of three aspects:
+
+1. the static texts in the templates must be translated
+2. locale specific formatting must be done (especially regarding dates and numbers)
+3. the user must be able to select a language
+
+The first thing is what [angular.js][angular] has no strong opinion about.
+Since we don't want to duplicate our templates for all supported
+languages, this is where [Play!][play] will help us. Play! will generate
+the localized templates for us.
+The second aspect is where angular is already doing quite well on its
+own. And finally with the third aspect, we have to bring Play! and
+angular.js together.
+
+So let's tackle them in opposite order.
+
+## Selecting a language
+
+The actual selection of a language is currently done in a simple select
+box. One could go wild here. But please make sure to also 
+list the language in their own lingua (ever tried switching a japanese
+Windows to another language? I knew I was in the language settings but I
+had no idea what all the options were supposed to mean).
+
+{% img http://com.notadomain.blogbucket.s3.amazonaws.com/code/todo-app-language-switch.png Language selection in the app %}
+
+The actual selection is then stored in a simple cookie. This way, the
+server knows the selected language in every request. I also reload the
+page after setting the language. This reloads the angular application
+with the new language.
+
+The actual language setting in angular is done via a LanguageService 
+
+``` 
+app.service('LanguageService', ['$http', '$cookies', '$window', ($http, $cookies, $window) ->
+  @setLanguage = (key) ->
+    $cookies.language = key
+    $window.location.reload()
+
+  @currentLanguage = () ->
+    $cookies.language or "en"
+])
+```
+
+The service stores the current language in a cookie (don't forget to add
+`ngCookies` as a dependency of your angular app!) and retrieves it
+either from the cookie or defaults to `"en"`.
+
+That Service is used by the view via a simple little controller
+j
+```
+app.controller('LanguageController', ['$scope', 'LanguageService', ($scope, LanguageService) ->
+  $scope.language = LanguageService.currentLanguage()
+
+  $scope.updateLanguage = (language) ->
+    LanguageService.setLanguage(language)
+])
+```
+And finally the view (ignore the `implicit lang` for now - we'll come to
+that): 
+
+``` html
+@(implicit lang: Lang)
+
+<div class="navbar-right" ng-controller="LanguageController">
+    <select name="language" id="language" ng-model="language">
+        <option value="en">English (@Messages("language.select.en"))</option>
+        <option value="de">Deutsch (@Messages("language.select.de"))</option>
+        <option value="ja">日本語 (@Messages("language.select.ja"))</option>
+    </select>
+    <button ng-click="updateLanguage(language)">
+              @Messages("language.select.button")
+    </button>
+</div>
+```
+
+The relevant parts in the view are the `ng-model` directive on the
+select element. The controllers sets that to the current language from
+the service. And finally the button that triggers the language update
+via its `ng-click` directive.
+
+## Locale specific formatting
+
+The way angular handles locale specific formatting is via a locale specific JavaScript file
+that is either included separately or concatenated to the end of the
+actual angular.js file. While this approach works, it is not possible to
+change the formatting on the fly. But since we reload the angular
+application on language changes anyway, this is ok for us. The actual
+include on the server now looks like this:
+
+``` html
+<script src="@routes.Assets.at("javascripts/angular.js")" type="text/javascript"></script>
+<script src="@routes.Assets.at("javascripts/angular-locale_" + lang.language + ".js")" type="text/javascript"></script>
+```
+
+Where `lang` is a `play.api.i18n.Lang` object representing the current
+language used for the request on the server (more on that later). That
+way the angular application is always running with the language set by
+the user and correctly reinitialized on language switching.
+
+Since my todo app would not actually make use of any of this, I've simply added
+a footer that shows todays date formatted by angular. (Therefore my
+application gained a neat feature: If you ever need todays date in
+Japanese for whatever reason, just use my todo app).
+
+## Translated templates
+
+The actual meat of the i18n happens on the server. All the templates are
+translated by Play!. Play! has a very nice way of dealing with
+different languages. All supported languages must be declared in the
+`application.conf` like so:
+
+```
+application.langs="en,de,ja"
+```
+
+The actual translations are stored in files called `messages.XXX` where
+`XXX` is the language as declared previously. For all practical intents
+and purposes, those files behave exactly like Javas `.properties` files
+with one critical difference. Play! actually expects those files to be
+in UTF-8 (There goes the need for my [escapist](https://github.com/mo-gr/Escapist)).
+
+And now it's finally time to come the implicit language parameter that
+we already saw in the language switch view.
+
+The way you access those messages files is via a call to
+`Messages("propery.key")`. This method also takes an implicit parameter
+of type  `play.api.i18n.Lang`. So all we have to do is fetch the
+language from the cookie, transform it into a valid `Lang` and pass it
+to our templates.
+
+In Play! template files are a weird mix of HTML and Scala code that is
+actually compiled (and type checked at compile time!) into a regular
+function that you call from your server-side controllers. To declare,
+that our template requires a `Lang` Parameter, that should be used as an
+implicit, we have to start our template with a parameter declaration
+like so:
+```
+@(implicit lang: Lang)
+```
+We already saw that in the language parameter view. The view is normal
+HTML and everything that starts with an `@` is expected to be Scala
+code. So we can now write `@Messages("propery.key")` everywhere in our
+template and it will magically choose the right language.
+
+One word about Scalas implicits. They are a powerful feature of the language that can reduce a lot of
+useless boilerplate code. However they are very close to magic and
+should therefore be used with caution and only where really needed. If
+in doubt, avoid implicits.
+
+Finally, here is the trait I use to get the language out of the cookie
+header:
+
+```
+trait LocaleFromRequest {
+  def localeFromRequest(implicit request: RequestHeader): Lang = {
+    request.cookies.get("language") match {
+      case None => Application.lang(request)
+      case Some(cookie) => Lang.get(cookie.value).getOrElse(Application.lang(request))
+    }
+  }
+}
+```
+
+If there is no `language` key in the cookie, just use the Applications
+default way of determining the language. Otherwise create a Lang from
+the cookie-value. If that fails, fall back again to let play determine a
+language from its known set of languages.
+
+## Why don't you use the Accept-Language HTTP header?
+
+Good question. Because I want to give my users an easy way of changing
+the application language. And changing the `Accept-Language` of your
+browser is not at all easy or accessible to the common user.
+
+## Pitfall: Bootstraps default fonts
+
+Bootstrap 3 by default has a font-family declaration of:
+
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+This is all nice and good on real systems. However on a default windows
+box, there is neither "Helvetica Neue" nor Helvetica. And Arial
+apparently has no full Japanese character support. The result are a visually very ugly mix of the different character classes
+in Japanese. 
+
+{% img http://com.notadomain.blogbucket.s3.amazonaws.com/code/app_jp.jpg Application with ugly Japanese font rendering in Windows %}
+
+See the obvious missmatch in width and serif-style of the の with respect to the other kanji?
+
+Upon recommendation by Fabian Prinz, I've added
+some font to the mix that I've never heard of before:
+
+    font-family: "Helvetica Neue", Helvetica, "MS PGothic", Arial, sans-serif;
+
+{% img http://com.notadomain.blogbucket.s3.amazonaws.com/code/app_jp-font.jpg Application with better Japanese font rendering in Windows %}
+
+Much better. Now even Japanese Windows Users can enjoy my awesome todo-list.
+
+## Pitfall: JSON in Play! 2.1
+
+Play!-Scala has great support for working with JSON. But due to the fact that
+Scala has a strong type-system and Play! 2.1 introduced some substantial
+changes to the way JSON is handled, it might be a bit difficult to get
+started (the [documentation](http://www.playframework.com/documentation/2.1.x/ScalaJson) is a bit thin and most examples in the web refer to the
+old ways).
+
+The basics for handling JSON is creating a reader and a writer. The
+reader also doubles as a validator. The following is a reader for a ToDo
+that parses the JSON string `{"name": "A Todo", "done": false, "id": 42}` with the little caveat that the id key is optional: 
+
+``` 
+implicit val toDoJsonReader = new Reads[ToDo] {
+  def reads(json: JsValue) = {
+    (json \ "name").validate[String].flatMap { name =>
+        (json \ "done").validate[Boolean].map { done =>
+          (json \ "id").asOpt[Long] match {
+            case Some(id) => ToDo(Id(id), name, done)
+            case _ => ToDo(Id(0L), name, done)
+          }
+        }
+    }
+  }
+```
+
+While this is very straight forward and idiomatic Scala, it can be a bit
+overwhelming for people new to Scala. It took me a while to really get
+the hang of it.
+
+However, the Reads object is then implicitly
+used like in the following example:
+```
+def create = Action(parse.json) { request =>
+    request.body.validate[ToDo].fold(
+      valid = todo => Ok(Json.toJson(ToDoService.createNew(todo))),
+      invalid = e => BadRequest("invalid request")
+    )
+  }
+```
+
+## Pitfall: Minification
+
+A well known pitfall in angular.js is the danger of JavaScript minifiers
+to the dependency-injection mechanism of angular. It is therefore best
+to get in the habit of using the more verbose array-syntax for
+controllers even in CoffeeScript. So instead of writing
+
+```
+app.controller 'MyBrokenController', ($scope) ->
+  $scope.value = 'will break in minification'
+```
+
+Always write the long form, that survives minification:
+
+```
+app.controller 'MyWorkingController', ['$scope', ($scope) ->
+  $scope.value = 'will work minified'
+]
+```
+
+## Some words about the example
+
+The code for the application is over on [GitHub][github]. Since I'm
+fairly new to Scala, it might not be the most idiomatic Scala (or Play!
+for that matter). I also did not set up a real database. The todo list
+uses the H2 in-memory DB even over on [Heroku][heroku]. So don't expect
+your todos to stay there. I actually don't know when and whether heroku
+restarts the application. But when they do, the in-memory database
+will be cleared!
+
+One other thing I kind of regret, when I started I was
+on the fence of writing *todo* or *to-do*. The results are inconsequently
+named Objects. Sometimes I used `todo` and sometimes `toDo`. This
+inconsistency annoys me and If it wouldn't be so annoying to change only
+the case of files in git under OS X, I would probably already have done
+it. This proves once more, that there are only two hard problems in
+computer science:
+
+1. Cache invalidation
+2. Naming things
+3. Off-by-one errors
+
+## Summary
+
+So is the combination of Play! and angular.js a good fit for
+multi-language single-page applications? Absolutely! It is a breeze to
+write a RESTful API with Play! Once you get a hang on the way Play!
+handles JSON there is very little friction. And the templating system in
+Play! is one of the best server side templates I've ever used.
+
+However there are also downsides. My biggest gripe is with the asset
+pipeline in Play! While on the first look it seems to be a very good
+system with [CoffeeScript][coffee] and [LESS](http://lesscss.org) support out of
+the box, it actually turned out to be not as flexible as I would have
+wished. Maybe I'm just not smart enough but I was not able to get Play!
+to execute [Jasmine](http://pivotal.github.io/jasmine/) Test Specs
+written in [CoffeeScript][coffee]. And no testing in angular.js means,
+you are missing out on one of the other great features of angular.
+
+On the last [Play! Usergroup Meetup in Berlin](http://www.meetup.com/Play-Berlin-Brandenburg/) 
+was a presentation by my good friend [Yann Simon](https://twitter.com/simon_yann) showing how
+to use [Grunt](http://gruntjs.com) instead of the asset pipeline in
+Play! I would recommend to use that for real projects as it provides
+more flexibility in asset handling, is a technology known to many
+front-end developers and provides an even cleaner separation between the
+GUI/front-end and the server/back-end.
+
+One more thing. Writing angular.js in [CoffeeScript][coffee] is a great
+pleasure! The more friendly syntax of CoffeeScript really helps a lot
+and makes the code much more readable.
+
+## What next?
+
+One important thing that I havn't yet looked into is caching. Currently,
+there is the real danger of browsers caching the templates and therefore
+not updating correctly to a language switch. The easy (and ugly) way out would be
+to just disable caching on all html files. A better approach would be to
+add the language as query- or url-parameter to give the browser a chance to cache
+the files for every language separately.
+
+There should also be a way to set the language via a URL to make it
+possible to link into a specific language. This should be quite easy
+with Play! What else are you missing from the todo-app in respect to
+i18n?
+
+I hope this post was helpful for someone. I intend to make this the
+first in a series of more technical posts here. If you have any
+questions, feel free to ask. I'm looking forward to your feedback!
+
+*(Thanks a lot to Fabian Prinz for the Japanese translation)*
+
+[angular]: http://angularjs.org
+[play]: http://www.playframework.com
+[coffee]: http://http://coffeescript.org
+[bootstrap]: http://getbootstrap.com
+[heroku]: https://www.heroku.com
+[example]: http://ang18n-example.herokuapp.com/
+[github]: https://github.com/mo-gr/ang18n

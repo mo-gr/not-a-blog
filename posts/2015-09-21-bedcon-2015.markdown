@@ -1,0 +1,14 @@
+---
+layout: post
+title: "bedcon 2015"
+date: 2015-09-21 22:25
+comments: true
+external-url: 
+categories: 
+---
+
+I did a talk on this years [BED-Con](http://bed-con.org/2015/) about
+React.js + Flux (more specifically Redux). I don't think there is a
+video of the talk, but my slides are available [here](http://reactflux.notadomain.com/). They are at least partially german, since I 
+gave the talk in german. Maybe I'll try to condense it also into a blog
+post. But don't hold your breath.
