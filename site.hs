@@ -5,6 +5,16 @@ import           Hakyll
 
 
 --------------------------------------------------------------------------------
+
+feedConfiguration :: FeedConfiguration
+feedConfiguration = FeedConfiguration
+    { feedTitle       = "Not a blog"
+    , feedDescription = "Yet another pointless personal blog"
+    , feedAuthorName  = "Moritz Grauel"
+    , feedAuthorEmail = "mo@notadomain.com"
+    , feedRoot        = "http://blog.notadomain.com/"
+    }
+
 main :: IO ()
 main = hakyll $ do
     match "images/*" $ do
@@ -25,6 +35,7 @@ main = hakyll $ do
         route $ setExtension "html"
         compile $ pandocCompiler
             >>= loadAndApplyTemplate "templates/post.html"    postCtx
+            >>= saveSnapshot "content"
             >>= loadAndApplyTemplate "templates/default.html" postCtx
             >>= relativizeUrls
 
@@ -46,10 +57,9 @@ main = hakyll $ do
     match "index.html" $ do
         route idRoute
         compile $ do
-            posts <- recentFirst =<< loadAll "posts/*"
-            recentFive <- pure $ take 5 posts
+            posts <- fmap (take 5) . recentFirst =<< loadAll "posts/*"
             let indexCtx =
-                    listField "posts" postCtx (return recentFive) `mappend`
+                    listField "posts" postCtx (return posts) `mappend`
                     constField "title" "Home"                `mappend`
                     defaultContext
 
@@ -59,6 +69,14 @@ main = hakyll $ do
                 >>= relativizeUrls
 
     match "templates/*" $ compile templateBodyCompiler
+
+    create ["atom.xml"] $ do
+      route idRoute
+      compile $ do
+          let feedCtx = postCtx `mappend` bodyField "description"
+          posts <- fmap (take 20) . recentFirst =<<
+              loadAllSnapshots "posts/*" "content"
+          renderAtom feedConfiguration feedCtx posts
 
 
 --------------------------------------------------------------------------------
