@@ -47,8 +47,9 @@ main = hakyll $ do
         route idRoute
         compile $ do
             posts <- recentFirst =<< loadAll "posts/*"
+            recentFive <- pure $ take 5 posts
             let indexCtx =
-                    listField "posts" postCtx (return posts) `mappend`
+                    listField "posts" postCtx (return recentFive) `mappend`
                     constField "title" "Home"                `mappend`
                     defaultContext
 

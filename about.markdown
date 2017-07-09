@@ -14,11 +14,11 @@ deep-down backend code, I prefer delighting my users with lovingly crafted, mode
 apps brewed from state-of-the-art technologies and seasoned with a good
 dose of tasty user experience.
 
-![Moritz Grauel, 2011](/images/Mo256.jpg)
+![](/images/Mo256.jpg "Moritz Grauel, 2011")
 
 I graduated from Humboldt-University, Berlin with a Diploma in Computer Science.
 
-## <a id="contact"></a>Contact
+## Contact
 
 If you want to get in touch with me, feel free to contact me. For example via one of the following services:
 
@@ -35,12 +35,12 @@ serious! Please.
 
 The topics, you are going to read here are wide and diverse but they all have something in common. They interest me to
 such a degree, that I felt the urge to write about them. Usually the posts should deal with stuff related to
-programming. Probably mobile development. Sometimes tech in general. Or they might have something to do with some of my
+programming. Probably development. Sometimes tech in general. Or they might have something to do with some of my
 hobbies, like [photography](http://www.flickr.com/photos/27380123@N03/), cycling, bouldering... Whatever. 
 
 Needless to say, all views and opinions expressed in this blog are my own and do not represent in any way, shape or form the views or opinions of my current or any past employer.
 
-If you don't like, what I write, that's fine. Just go away.
+If you don't like what I write, that's fine. Just go away.
 The internet is full of stuff. Find something you like.
 
 Stay hungry, stay foolish...
