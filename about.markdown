@@ -14,7 +14,7 @@ deep-down backend code, I prefer delighting my users with lovingly crafted, mode
 apps brewed from state-of-the-art technologies and seasoned with a good
 dose of tasty user experience.
 
-{% img center /images/Mo256.jpg Moritz Grauel, 2011 %}
+![Moritz Grauel, 2011](/images/Mo256.jpg)
 
 I graduated from Humboldt-University, Berlin with a Diploma in Computer Science.
 
@@ -23,7 +23,8 @@ I graduated from Humboldt-University, Berlin with a Diploma in Computer Science.
 If you want to get in touch with me, feel free to contact me. For example via one of the following services:
 
 - Mail: mo@notadomain.com
-- Twitter: [@mo_gr](https://twitter.com/#!/mo_gr)
+- Twitter: [mo_gr](https://twitter.com/#!/mo_gr)
+- LinkedIn: [Moritz Grauel](https://www.linkedin.com/in/moritz-grauel-4b285617/)
 - Xing: [Moritz Grauel](https://www.xing.com/profile/Moritz_Grauel)
 
 ## About this blog
