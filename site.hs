@@ -25,6 +25,10 @@ main = hakyll $ do
         route   idRoute
         compile compressCssCompiler
 
+    match (fromList ["CNAME", "404.html", "robots.txt"]) $ do
+        route   idRoute
+        compile copyFileCompiler
+
     match (fromList ["about.markdown", "impressum.markdown"]) $ do
         route   $ setExtension "html"
         compile $ pandocCompiler
