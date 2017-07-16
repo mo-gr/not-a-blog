@@ -7,7 +7,7 @@ external-url:
 categories: travel misc
 ---
 
-{% img http://25.media.tumblr.com/tumblr_madug76njY1rgtzh1o1_1280.jpg 'Ready to go on a tour' %}
+![](http://25.media.tumblr.com/tumblr_madug76njY1rgtzh1o1_1280.jpg "Ready to go on a tour")
 
 On thrusday, in just a few short days, we will start quite a big travel.
 First stop will be Moscow, where we stay for a day before we head on to

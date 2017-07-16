@@ -9,7 +9,7 @@ categories:
 
 Happy new year!
 
-{% img http://dl.dropbox.com/u/165601/blog/rocket.jpg "Picture completely unrelated to post - Happy new year" %}
+![](https://www.dropbox.com/s/oarshiyy92zu542/rocket.jpg?dl=1 "Picture completely unrelated to post - Happy new year")
 
 I got a late christmas gift in the form of a [Crucial M4 256G*][m4] Solid State Drive. But let me start a bit earlier.
 

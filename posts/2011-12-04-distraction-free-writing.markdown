@@ -16,7 +16,7 @@ And while I really like to use vim, especially the awesome [MacVim](http://code.
 
 I like the inline-markdown preview/support of iA Writer and the iCloud support. But I am not so sure about the total lack of configurablility. iA Writer lets you configure nothing. WriteRoom lets you pick your own colors and fonts. I am using the Solarized Dark Theme from the Ethan Schoonovers [solarized](http://ethanschoonover.com/solarized) project, which I am currently using about everywhere. It looks something like this:
 
-{% img https://img.skitch.com/20111204-jyx7tgkg65ps8qm4pp6dg417x2.jpg %}
+![](https://raw.githubusercontent.com/altercation/solarized/master/img/screen-haskell-dark.png "Solarized Dark")
 
 A screenshot of iA makes no really sense as it always looks the same. Just head over to their [site](http://www.iawriter.com/) to see how it looks.
 
