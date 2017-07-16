@@ -14,7 +14,7 @@ deep-down backend code, I prefer delighting my users with lovingly crafted, mode
 apps brewed from state-of-the-art technologies and seasoned with a good
 dose of tasty user experience.
 
-![](/images/Mo256.jpg "Moritz Grauel, 2011")
+![](/images/MoGoggles.jpg "Moritz Grauel, 2017")
 
 I graduated from Humboldt-University, Berlin with a Diploma in Computer Science.
 

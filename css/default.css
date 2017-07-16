@@ -22,11 +22,12 @@ nav a {
     color: black;
     font-size: 1.0rem;
     font-weight: bold;
+    font-style: normal;
     margin-left: 12px;
     text-decoration: none;
 }
 
-footer {
+footer, footer a {
     font-style: italic;
     border-top: 1px solid #aaa;
     color: #555;
@@ -44,23 +45,29 @@ h2 {
     font-size: 1.4rem;
 }
 
+a {
+    color: black;
+    font-style: italic;
+    font-size: 1.1rem;
+}
+
 article {
     font-family: 'Georgia', 'serif';
     font-size: 1.1rem;
 }
 
-article .header {
+article .header, li.post{
     color: #555;
-    font-size: 1.1rem;
+    font-size: 0.9rem;
     font-style: italic;
 }
 
-article img {
+img {
     max-width: 100%;
     margin: 0 auto;
 }
 
-article .figure {
+.figure {
     display: flex;
     align-items: center;
 }
@@ -74,5 +81,6 @@ pre code {
     float: left;
     font-size: 18px;
     font-weight: bold;
+    font-style: normal;
     text-decoration: none;
 }
