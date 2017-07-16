@@ -14,7 +14,7 @@ feedConfiguration = FeedConfiguration
     , feedDescription = "Yet another pointless personal blog"
     , feedAuthorName  = "Moritz Grauel"
     , feedAuthorEmail = "mo@notadomain.com"
-    , feedRoot        = "http://blog.notadomain.com/"
+    , feedRoot        = "http://blog.notadomain.com"
     }
 
 main :: IO ()

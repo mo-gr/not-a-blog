@@ -15,6 +15,10 @@ apps brewed from state-of-the-art technologies and seasoned with a good
 dose of tasty user experience.
 
 ![](/images/MoGoggles.jpg "Moritz Grauel, 2017")
+ 
+<center>
+*Berlin native. Bit herder. Code connoisseur. Coffee lover.*
+</center>
 
 I graduated from Humboldt-University, Berlin with a Diploma in Computer Science.
 

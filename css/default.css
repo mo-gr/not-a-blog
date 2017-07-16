@@ -37,6 +37,14 @@ footer, footer a {
     text-align: right;
 }
 
+footer a.imprint {
+    text-align: left;
+    float: left;
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
 h1 {
     font-size: 1.5rem;
 }
