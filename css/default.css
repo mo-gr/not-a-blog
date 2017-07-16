@@ -1,8 +1,11 @@
 body {
     color: black;
     font-size: 16px;
+    line-height: 1.4;
     margin: 0px auto 0px auto;
-    width: 600px;
+    max-width: 640px;
+    width: 80vw;
+    font-family: 'Helvetica', 'sans-serif';
 }
 
 header {
@@ -17,33 +20,38 @@ nav {
 
 nav a {
     color: black;
-    font-size: 18px;
+    font-size: 1.0rem;
     font-weight: bold;
     margin-left: 12px;
     text-decoration: none;
-    text-transform: uppercase;
 }
 
 footer {
+    font-style: italic;
     border-top: solid 2px black;
     color: #555;
-    font-size: 12px;
+    font-size: 0.7rem;
     margin-top: 30px;
     padding: 12px 0px 12px 0px;
     text-align: right;
 }
 
 h1 {
-    font-size: 24px;
+    font-size: 1.5rem;
 }
 
 h2 {
-    font-size: 20px;
+    font-size: 1.4rem;
+}
+
+article {
+    font-family: 'Georgia', 'serif';
+    font-size: 1.1rem;
 }
 
 article .header {
     color: #555;
-    font-size: 14px;
+    font-size: 1.1rem;
     font-style: italic;
 }
 
