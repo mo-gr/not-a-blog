@@ -98,7 +98,6 @@ The service stores the current language in a cookie (don't forget to add
 either from the cookie or defaults to `"en"`.
 
 That Service is used by the view via a simple little controller
-j
 ```
 app.controller('LanguageController', ['$scope', 'LanguageService', ($scope, LanguageService) ->
   $scope.language = LanguageService.currentLanguage()

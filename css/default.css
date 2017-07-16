@@ -9,7 +9,7 @@ body {
 }
 
 header {
-    border-bottom: 2px solid black;
+    border-bottom: 1px solid #aaa;
     margin-bottom: 30px;
     padding: 12px 0px 12px 0px;
 }
@@ -28,7 +28,7 @@ nav a {
 
 footer {
     font-style: italic;
-    border-top: solid 2px black;
+    border-top: 1px solid #aaa;
     color: #555;
     font-size: 0.7rem;
     margin-top: 30px;
@@ -63,6 +63,10 @@ article img {
 article .figure {
     display: flex;
     align-items: center;
+}
+
+pre code {
+    font-size: 0.9rem;
 }
 
 .logo a {
