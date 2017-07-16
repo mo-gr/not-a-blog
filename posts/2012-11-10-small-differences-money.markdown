@@ -17,7 +17,7 @@ The second consequence is, whenever you have to pay for something a bit more exp
 
 Did I mention, we payed our entire 3 month rent and a safety deposit in cash? This is how some of it looked:
 
-{% img http://com.notadomain.blogbucket.s3.amazonaws.com/images/Cash.jpg Lots of cash %}
+![](http://com.notadomain.blogbucket.s3.amazonaws.com/images/Cash.jpg "Lots of cash")
 
 Really, you have to deal with silly big stacks of cash from time to time. You have to make multiple trips to an ATM to get reasonable amounts of cash because they can't spit out stacks big enough. Stuff like that.
 
@@ -29,6 +29,6 @@ On the street, prices are usually multiples of 1 RMB. Amounts below 1 RMB are us
 
 This is how it looks:
 
-{% img http://com.notadomain.blogbucket.s3.amazonaws.com/images/worthless.jpg Worthless money %}
+![](http://com.notadomain.blogbucket.s3.amazonaws.com/images/worthless.jpg "Worthless money")
 
 It has roughly the same size and feel as monopoly money. Only, it is worth slightly less then monopoly money.   

@@ -45,7 +45,7 @@ exposure to the new [Bootstrap v3][bootstrap]. An instance of the app is
 hosted on [Heroku][heroku] and can be laughed at [here][example]. And
 the code is of course over on [GitHub][github].
 
-{% img http://com.notadomain.blogbucket.s3.amazonaws.com/code/todo-app.png My lame todo app %}
+![](http://com.notadomain.blogbucket.s3.amazonaws.com/code/todo-app.png "My lame todo app")
 
 ## What is required for proper i18n?
 
@@ -73,7 +73,7 @@ list the language in their own lingua (ever tried switching a japanese
 Windows to another language? I knew I was in the language settings but I
 had no idea what all the options were supposed to mean).
 
-{% img http://com.notadomain.blogbucket.s3.amazonaws.com/code/todo-app-language-switch.png Language selection in the app %}
+![](http://com.notadomain.blogbucket.s3.amazonaws.com/code/todo-app-language-switch.png "Language selection in the app")
 
 The actual selection is then stored in a simple cookie. This way, the
 server knows the selected language in every request. I also reload the
@@ -235,7 +235,7 @@ box, there is neither "Helvetica Neue" nor Helvetica. And Arial
 apparently has no full Japanese character support. The result are a visually very ugly mix of the different character classes
 in Japanese. 
 
-{% img http://com.notadomain.blogbucket.s3.amazonaws.com/code/app_jp.jpg Application with ugly Japanese font rendering in Windows %}
+![](http://com.notadomain.blogbucket.s3.amazonaws.com/code/app_jp.jpg "Application with ugly Japanese font rendering in Windows")
 
 See the obvious missmatch in width and serif-style of the の with respect to the other kanji?
 
@@ -244,7 +244,7 @@ some font to the mix that I've never heard of before:
 
     font-family: "Helvetica Neue", Helvetica, "MS PGothic", Arial, sans-serif;
 
-{% img http://com.notadomain.blogbucket.s3.amazonaws.com/code/app_jp-font.jpg Application with better Japanese font rendering in Windows %}
+![](http://com.notadomain.blogbucket.s3.amazonaws.com/code/app_jp-font.jpg "Application with better Japanese font rendering in Windows")
 
 Much better. Now even Japanese Windows Users can enjoy my awesome todo-list.
 

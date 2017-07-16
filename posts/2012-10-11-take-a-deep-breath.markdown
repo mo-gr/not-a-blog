@@ -21,7 +21,7 @@ I took a picture from our window that morning. Today – also a nice
 day with lots of sun – I tried to take the same picutre again. Same ISO, same
 aperture, same shutter speed, roughly the same time of the day. I merged those images. This is the result:
 
-{% img http://com.notadomain.blogbucket.s3.amazonaws.com/images/Airquality.jpg Overlay of a clear and a usual day %}
+![](http://com.notadomain.blogbucket.s3.amazonaws.com/images/Airquality.jpg "Overlay of a clear and a usual day")
 
 To be honest, I made one mistake. I let the camera on
 auto-white-balance. This probably overstates the difference a bit.

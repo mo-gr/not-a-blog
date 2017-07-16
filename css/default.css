@@ -47,6 +47,16 @@ article .header {
     font-style: italic;
 }
 
+article img {
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+article .figure {
+    display: flex;
+    align-items: center;
+}
+
 .logo a {
     color: black;
     float: left;

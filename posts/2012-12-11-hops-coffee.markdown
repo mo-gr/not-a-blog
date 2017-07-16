@@ -13,7 +13,7 @@ Therefore it can't come as a huge surprise, that Qingdao features a rather nice 
 
 The one, that really caught my eye was *Hops Coffee*. The direct combination of my two most favorite beverages in the world can't be recommended at all. But the idea of a slight hops aroma in a nice cup of coffee sounds at least interesting to me.
 
-{% img http://com.notadomain.blogbucket.s3.amazonaws.com/images/HopsCoffee.jpg "Hops Coffee, brewed and ready to drink" %}
+![](http://com.notadomain.blogbucket.s3.amazonaws.com/images/HopsCoffee.jpg "Hops Coffee, brewed and ready to drink")
 
 Sadly, the actual product was more of a multi stage disappointment than a great new beverage. First, it's instant. I can live with that and was kind of expecting it to be.
 

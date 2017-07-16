@@ -21,7 +21,7 @@ Having a prepaid cell phone is a very common thing here in Beijing like in many 
 
 They also showed us the cards. This is a bit useless since we have no idea at all how to recharge those cards. But I can at least show them here. In order from top to bottom: Water, electricity and gas.
 
-{% img http://com.notadomain.blogbucket.s3.amazonaws.com/images/Prepaid.jpg %}
+![](http://com.notadomain.blogbucket.s3.amazonaws.com/images/Prepaid.jpg)
 
 If you think about it, it actually isn't that bad of an idea. At least people can't get in situations, where they all of a sudden have to repay huge sums because they used more gas then anticipated.
 
