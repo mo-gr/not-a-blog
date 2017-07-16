@@ -1,7 +1,9 @@
 --------------------------------------------------------------------------------
 {-# LANGUAGE OverloadedStrings #-}
-import           Data.Monoid (mappend)
+import           Data.List             (isSuffixOf)
+import           Data.Monoid           (mappend)
 import           Hakyll
+import           System.FilePath.Posix (takeBaseName, takeDirectory, (</>))
 
 
 --------------------------------------------------------------------------------
@@ -30,21 +32,23 @@ main = hakyll $ do
         compile copyFileCompiler
 
     match (fromList ["about.markdown", "impressum.markdown"]) $ do
-        route   $ setExtension "html"
+        route cleanRoute
         compile $ pandocCompiler
             >>= loadAndApplyTemplate "templates/default.html" defaultContext
             >>= relativizeUrls
+            >>= cleanIndexUrls
 
     match "posts/*" $ do
-        route $ setExtension "html"
+        route cleanRoute
         compile $ pandocCompiler
             >>= loadAndApplyTemplate "templates/post.html"    postCtx
             >>= saveSnapshot "content"
             >>= loadAndApplyTemplate "templates/default.html" postCtx
             >>= relativizeUrls
+            >>= cleanIndexUrls
 
     create ["archive.html"] $ do
-        route idRoute
+        route cleanRoute
         compile $ do
             posts <- recentFirst =<< loadAll "posts/*"
             let archiveCtx =
@@ -56,6 +60,7 @@ main = hakyll $ do
                 >>= loadAndApplyTemplate "templates/archive.html" archiveCtx
                 >>= loadAndApplyTemplate "templates/default.html" archiveCtx
                 >>= relativizeUrls
+                >>= cleanIndexUrls
 
 
     match "index.html" $ do
@@ -71,6 +76,7 @@ main = hakyll $ do
                 >>= applyAsTemplate indexCtx
                 >>= loadAndApplyTemplate "templates/default.html" indexCtx
                 >>= relativizeUrls
+                >>= cleanIndexUrls
 
     match "templates/*" $ compile templateBodyCompiler
 
@@ -88,3 +94,24 @@ postCtx :: Context String
 postCtx =
     dateField "date" "%B %e, %Y" `mappend`
     defaultContext
+
+cleanRoute :: Routes
+cleanRoute = customRoute createIndexRoute
+  where
+    createIndexRoute ident = takeDirectory p </> takeBaseName p </> "index.html"
+                            where p = toFilePath ident
+
+cleanIndexUrls :: Item String -> Compiler (Item String)
+cleanIndexUrls = return . fmap (withUrls cleanIndex)
+
+cleanIndexHtmls :: Item String -> Compiler (Item String)
+cleanIndexHtmls = return . fmap (replaceAll pattern replacement)
+    where
+      pattern = "/index.html"
+      replacement = const "/"
+
+cleanIndex :: String -> String
+cleanIndex url
+    | idx `isSuffixOf` url = take (length url - length idx) url
+    | otherwise            = url
+  where idx = "index.html"
