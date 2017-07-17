@@ -1,0 +1,8 @@
+---
+title: "Hakyll"
+date: 2017-07-17
+---
+
+This blog is now powered by [Hakyll](https://jaspervdj.be/hakyll/index.html). The previous version was based on [Octopress](http://octopress.org), which served me well. But I felt like I needed a change for changes sake.
+
+Also, Hakyll offers far less features and is therefore conceptually a lot simpler. I hope, this will make me tinker with it a bit more and as a result make me not ignore this blog as much as I did in the last two years.
