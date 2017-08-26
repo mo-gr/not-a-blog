@@ -1,9 +1,16 @@
 <article>
     <section class="header">
+      <span class="info" >
         Posted on $date$
         $if(author)$
             by $author$
         $endif$
+      </span>
+      <span class="info">
+        $if(tags)$
+        Tags: $tags$
+        $endif$
+      </span>
     </section>
     <section>
         $body$
