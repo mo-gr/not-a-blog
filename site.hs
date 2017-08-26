@@ -1,6 +1,7 @@
 --------------------------------------------------------------------------------
 {-# LANGUAGE OverloadedStrings #-}
-import           Data.List             (isSuffixOf)
+import           Data.List             (isSuffixOf, find)
+import           Data.Maybe            (isJust)
 import           Data.Monoid           (mappend)
 import           Hakyll
 import           System.FilePath.Posix (takeBaseName, takeDirectory, (</>))
@@ -19,6 +20,9 @@ feedConfiguration = FeedConfiguration
 
 main :: IO ()
 main = hakyll $ do
+
+    tags <- buildTags "posts/*" (fromCapture "tags/*/index.html")
+
     match "images/*" $ do
         route   idRoute
         compile copyFileCompiler
@@ -40,7 +44,6 @@ main = hakyll $ do
 
     match "posts/*" $ do
         route cleanRoute
-        tags <- buildTags "posts/*" (fromCapture "tags/*/index.html")
         compile $ pandocCompiler
             >>= loadAndApplyTemplate "templates/post.html"    (postCtxWithTags tags)
             >>= saveSnapshot "content"
@@ -50,9 +53,8 @@ main = hakyll $ do
 
     match "tags/*" $ do
         route cleanRoute
-        tags <- buildTags "posts/*" (fromCapture "tags/*/index.html")
         tagsRules tags $ \tag pattern -> do
-          let title = "Posts tagged \"" ++ tag ++ "\""
+          let title = "Posts tagged " ++ tag
           route idRoute
           compile $ do
               posts <- recentFirst =<< loadAll pattern
@@ -114,7 +116,9 @@ postCtx =
     defaultContext
 
 postCtxWithTags :: Tags -> Context String
-postCtxWithTags tags = tagsField "tags" tags `mappend` postCtx
+postCtxWithTags tags = hasTagsField `mappend` tagsField "tags" tags `mappend` postCtx
+  where
+    hasTagsField = boolField "hasTags" $ \(Item itemId body') -> isJust . find (elem itemId) $ snd <$> tagsMap tags
 
 cleanRoute :: Routes
 cleanRoute = customRoute createIndexRoute
