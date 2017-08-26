@@ -4,7 +4,7 @@ title: "Small differences: Prepaid"
 date: 2012-10-29 18:37
 comments: true
 external-url: 
-categories: travel china deltaepsilon
+tags: travel,china
 ---
 
 Preface

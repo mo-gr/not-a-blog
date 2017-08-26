@@ -4,7 +4,7 @@ title: "Stay calm"
 date: 2012-10-01 15:58
 comments: true
 external-url: http://www.spiegel.de/panorama/china-fuenf-deutsche-bei-busunfall-nahe-peking-gestorben-a-858843.html
-categories: misc, travel
+tags: misc,travel
 ---
 
 [Stay calm](http://www.spiegel.de/panorama/china-fuenf-deutsche-bei-busunfall-nahe-peking-gestorben-a-858843.html)

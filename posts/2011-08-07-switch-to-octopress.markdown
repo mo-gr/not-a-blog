@@ -3,7 +3,7 @@ layout: post
 title: "Switch to Octopress"
 date: 2011-08-07 17:30
 comments: true
-categories: meta
+tags: meta
 ---
 After a few weeks of not doing anything to my blog at all I decided to switch to [octopress]. It looks like a nice
 project and seems to fit most of my needs. I am currently setting up some form of deployment and tinkering with the

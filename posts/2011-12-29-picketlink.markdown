@@ -3,7 +3,7 @@ layout: post
 title: "Picketlink"
 date: 2011-12-29 17:28
 comments: true
-categories: 
+tags: 
 ---
 My friend [Michael](https://twitter.com/#!/michaelschuetz) and myself have been hacking some features into a specific version of [picketlink](http://www.jboss.org/picketlink). An update to a newer version was out of the question. We blogged about it over [here](http://blog.akquinet.de/2011/12/26/patching-picketlink-to-support-multiple-ldap-stores/).
 

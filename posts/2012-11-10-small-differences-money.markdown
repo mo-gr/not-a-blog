@@ -4,7 +4,7 @@ title: "Small Differences: Money"
 date: 2012-11-10 12:24
 comments: true
 external-url: 
-categories: china deltaepsilon travel
+tags: china,travel
 ---
 
 Of course china uses money like everywhere else. And a lot of payments are done using cash. But the cash here is a bit different than in Europe.

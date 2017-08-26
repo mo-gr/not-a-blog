@@ -4,7 +4,7 @@ title: "Berlin → Москва → Иркутск → 北京 → ???"
 date: 2012-09-11 21:20
 comments: true
 external-url: 
-categories: travel misc
+tags: travel,misc
 ---
 
 ![](http://25.media.tumblr.com/tumblr_madug76njY1rgtzh1o1_1280.jpg "Ready to go on a tour")

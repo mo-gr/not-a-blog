@@ -4,7 +4,7 @@ title: "Elevator Rushhour"
 date: 2012-10-08 09:35
 comments: true
 external-url: 
-categories: misc, travel
+tags: misc,travel
 ---
 
 This morning, we encountered something, I didn't knew existed: _Elevator

@@ -4,7 +4,7 @@ title: "Berlin Expert Days"
 date: 2012-03-31 16:39
 comments: true
 external-url: 
-categories: 
+tags: 
 ---
 
 This years [Berlin Expert Days][bed] conference has come to an end. The [BEDCon][bed] is a small tech conference in, you

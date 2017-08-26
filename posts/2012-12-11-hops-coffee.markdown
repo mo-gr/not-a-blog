@@ -4,7 +4,7 @@ title: "Hops Coffee"
 date: 2012-12-11 16:34
 comments: true
 external-url: 
-categories: travel china coffee
+tags: travel,china,coffee
 ---
 
 Last weekend, we've been to Qingdao (青岛). Qingdao is quite often also referred to by its *german* name-mangling Tsingtao. Tsingtao happens to be the biggest brewer and beer exporter in China and therefore also one of the largest in the world (Chinas economy of scale at work here).

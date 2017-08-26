@@ -4,7 +4,7 @@ title: "JavaScript: The Good Parts"
 date: 2012-04-03 16:48
 comments: true
 external-url: http://www.youtube.com/watch?v=hQVTIJBZook
-categories: 
+tags: 
 ---
 
 [JavaScript: The Good Parts](http://www.youtube.com/watch?v=hQVTIJBZook)

@@ -4,7 +4,7 @@ title: "Brain for hire"
 date: 2013-08-27 13:50
 comments: true
 external-url: 
-categories: personal, career
+tags: personal,career
 ---
 
 I guess it's time to make it official:

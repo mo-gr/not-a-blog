@@ -3,7 +3,7 @@ layout: post
 title: "ssh housekeeping"
 date: 2011-12-04 21:46
 comments: true
-categories: self-reference
+tags: coding
 ---
 *Disclaimer: This post is primarily aimed at myself. No information here that can't be found via google.*
 

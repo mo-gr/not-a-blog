@@ -4,7 +4,7 @@ title: "Take a deep breath"
 date: 2012-10-11 16:49
 comments: true
 external-url: 
-categories: misc travel china
+tags: misc,travel,china
 ---
 
 A few weeks before we started our journey, a friend of mine gave me a

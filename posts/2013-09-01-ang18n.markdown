@@ -4,7 +4,7 @@ title: "ang18n"
 date: 2013-09-01 12:28
 comments: true
 external-url: 
-categories: coding, web
+tags: coding,web
 ---
 
 *tl;dr: This post describes how to build a multi-lingual

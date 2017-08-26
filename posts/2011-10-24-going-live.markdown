@@ -3,7 +3,7 @@ layout: post
 title: "Going Live"
 date: 2011-10-24 23:02
 comments: true
-categories: meta
+tags: meta
 ---
 
 Lazy me. Aparently it has been nearly two months since I last played with this blog. So instead of planing to tinker

@@ -4,7 +4,7 @@ title: "Zaunberg Talks"
 date: 2013-11-24 19:06
 comments: true
 external-url: 
-categories: 
+tags: 
 ---
 
 I finally get a chance to sit down and write a short post about the

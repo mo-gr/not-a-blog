@@ -3,7 +3,7 @@ layout: post
 title: "Google Reader (-1)"
 date: 2011-11-07 19:16
 comments: true
-categories: 
+tags: 
 ---
 
 *tl;dr: I don't like the new Google Reader UI. I'm using [Reeder](http://reederapp.com/) for now and I like it a lot.*

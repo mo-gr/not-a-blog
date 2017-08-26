@@ -4,7 +4,7 @@ title: "Bye bye Beijing"
 date: 2012-12-11 17:03
 comments: true
 external-url: 
-categories: travel china
+tags: travel,china
 ---
 
 On another note, today is actually my last day in Beijing. My next stop will be Seoul and I'm looking forward to it (and to finally having proper Internet again).

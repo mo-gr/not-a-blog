@@ -3,7 +3,7 @@ layout: post
 title: "Completely moved to Solid State"
 date: 2012-01-03 01:12
 comments: true
-categories: 
+tags: 
 ---
 *tl;dr: SSDs are awesome. Don't have one? Get one!*
 

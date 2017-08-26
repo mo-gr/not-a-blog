@@ -4,7 +4,7 @@ title: "Opportunities of scale"
 date: 2012-11-15 12:34
 comments: true
 external-url: 
-categories: travel china deltaepsilon 
+tags: travel,china
 ---
 
 We tend to forget how huge China is. Yeah, China is big and there are many Chinese. But how _many_ Chinese there are, just needs a reminder from time to time.

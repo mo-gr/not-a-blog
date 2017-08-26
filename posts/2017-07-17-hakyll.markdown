@@ -1,6 +1,7 @@
 ---
 title: "Hakyll"
 date: 2017-07-17
+tags: meta
 ---
 
 This blog is now powered by [Hakyll](https://jaspervdj.be/hakyll/index.html). The previous version was based on [Octopress](http://octopress.org), which served me well. But I felt like I needed a change for changes sake.

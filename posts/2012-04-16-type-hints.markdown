@@ -4,7 +4,7 @@ title: "Type Hints"
 date: 2012-04-16 22:59
 comments: true
 external-url: 
-categories: coding IntelliJ IDEA
+tags: coding
 ---
 Today, [Matthias Naber](mana) made me aware of [IntelliJ](idea) type hints in JSF and JSP files.
 

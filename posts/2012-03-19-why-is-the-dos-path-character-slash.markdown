@@ -4,7 +4,7 @@ title: "Why is the DOS path character \"\\\\\"?"
 date: 2012-03-19 13:38
 comments: true
 external-url: http://blogs.msdn.com/b/larryosterman/archive/2005/06/24/432386.aspx
-categories: history
+tags: history
 ---
 [Why is the DOS path character...](http://blogs.msdn.com/b/larryosterman/archive/2005/06/24/432386.aspx)
 Interesting article on why Microsofts engineers chose "\\\\" as the path

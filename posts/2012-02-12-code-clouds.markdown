@@ -3,7 +3,7 @@ layout: post
 title: "Code clouds"
 date: 2012-02-12 19:04
 comments: true
-categories: code projects
+tags: coding
 ---
 
 Last year, I've been to [Javazone] and among the many great speakers was

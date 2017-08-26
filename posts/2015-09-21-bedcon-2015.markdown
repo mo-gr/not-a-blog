@@ -4,7 +4,7 @@ title: "bedcon 2015"
 date: 2015-09-21 22:25
 comments: true
 external-url: 
-categories: 
+tags: 
 ---
 
 I did a talk on this years [BED-Con](http://bed-con.org/2015/) about

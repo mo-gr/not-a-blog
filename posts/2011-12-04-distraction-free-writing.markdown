@@ -3,7 +3,7 @@ layout: post
 title: "Distraction free writing"
 date: 2011-12-04 22:01
 comments: true
-categories: 
+tags: 
 ---
 
 I've never been a big fan of fat, bloaty WYSIWYMG text editors. Some people call them word processors. Most of my longer texts in university have been written in LaTeX/vim. This also includes my diploma thesis. Every longer experience with the so called word processors made me hate them even more. I like the appeal of writing - and basically thinking - in plain text files. Having a confusing UI and lots of inconsistend formatting in the document is very annoying to me. But for everyday work, LaTeX is just too much of an overhead and, more often than not, feels arcane.

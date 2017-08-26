@@ -4,7 +4,7 @@ title: "Octoflattr"
 date: 2012-03-19 10:54
 comments: true
 external-url: 
-categories: 
+tags: 
 ---
 *tl;dr:* [Here](https://github.com/mo-gr/not-a-blog/commit/1408219062aa8aac81abf54431d5edcd638dff2b) is how I integrated [Flattr] into my octopress blog.
 

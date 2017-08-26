@@ -4,7 +4,7 @@ title: "AngularJS Workshop"
 date: 2013-11-10 17:49
 comments: true
 external-url: 
-categories: 
+tags: 
 ---
 Only a little over a week left until my full-day AngularJS introduction
 workshop and I'm really looking forward to it!

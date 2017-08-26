@@ -4,7 +4,7 @@ title: "До Свидания Russia"
 date: 2012-10-02 21:19
 comments: true
 external-url: 
-categories: travel
+tags: travel
 ---
 
 ![](http://com.notadomain.blogbucket.s3.amazonaws.com/images/map.jpg "A map of the places where we took pictures")

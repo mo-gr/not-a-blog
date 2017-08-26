@@ -4,7 +4,7 @@ title: "Bastion"
 date: 2012-11-16 16:36
 comments: true
 external-url: 
-categories: review game
+tags: review,game
 ---
 
 ![Bastion Logo](http://com.notadomain.blogbucket.s3.amazonaws.com/images/TheBastionLogo.jpg)
