@@ -87,9 +87,14 @@ main = hakyll $ do
         route idRoute
         compile $ do
             posts <- fmap (take 5) . recentFirst =<< loadAll "posts/*"
+            skipFirst <- return $ (drop 1) posts
+            firstPost <- fmap (take 1) . recentFirst =<< loadAllSnapshots "posts/*" "content"
+
             let indexCtx =
-                    listField "posts" postCtx (return posts) `mappend`
+                    listField "posts" postCtx (return skipFirst) `mappend`
                     constField "title" "Welcome to yet another pointless blog" `mappend`
+                    listField "firstPost" postCtx (return firstPost) `mappend`
+                    --(bodyField . itemBody) firstPost `mappend`
                     defaultContext
 
             getResourceBody

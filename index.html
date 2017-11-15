@@ -1,8 +1,13 @@
 ---
 title: Home
 ---
+$for(firstPost)$
+<h2><a href="$url$">$title$</a></h2>
+     $body$
+$endfor$
 
-<p>Here are the least old posts:</p>
+<hr>
+<p>Here are older posts:</p>
 
 $partial("templates/post-list.html")$
 
