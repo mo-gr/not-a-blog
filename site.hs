@@ -1,5 +1,6 @@
 --------------------------------------------------------------------------------
-{-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE OverloadedStrings,ScopedTypeVariables #-}
+import           Control.Monad         ((<=<), filterM)
 import           Data.List             (isSuffixOf, find)
 import           Data.Maybe            (isJust)
 import           Data.Monoid           (mappend)
@@ -57,7 +58,7 @@ main = hakyll $ do
           let title = "Posts tagged " ++ tag
           route idRoute
           compile $ do
-              posts <- recentFirst =<< loadAll pattern
+              posts <- recentFirst =<< filterDrafts =<< loadAll pattern
               let ctx = constField "title" title
                         `mappend` listField "posts" postCtx (return posts)
                         `mappend` defaultContext
@@ -70,7 +71,7 @@ main = hakyll $ do
     create ["archive.html"] $ do
         route cleanRoute
         compile $ do
-            posts <- recentFirst =<< loadAll "posts/*"
+            posts <- recentFirst =<< filterDrafts =<< loadAll "posts/*"
             let archiveCtx =
                     listField "posts" postCtx (return posts) `mappend`
                     constField "title" "Archives"            `mappend`
@@ -86,16 +87,18 @@ main = hakyll $ do
     match "index.html" $ do
         route idRoute
         compile $ do
-            posts <- fmap (take 5) . recentFirst =<< loadAll "posts/*"
-            skipFirst <- return $ (drop 1) posts
-            firstPost <- fmap (take 1) . recentFirst =<< loadAllSnapshots "posts/*" "content"
+            posts <- fmap (take 5 . drop 1) . recentFirst =<< filterDrafts =<< loadAll "posts/*"
+            firstPostContent <- fmap (take 1) . recentFirst =<< filterDrafts =<< loadAllSnapshots "posts/*" "content"
 
+            (hasMap :: Bool) <- case firstPostContent of
+              (firstPost:_) -> isJust <$> getMetadataField (itemIdentifier firstPost) "map"
+              _             -> return False
             let indexCtx =
-                    listField "posts" postCtx (return skipFirst) `mappend`
                     constField "title" "Welcome to yet another pointless blog" `mappend`
-                    listField "firstPost" postCtx (return firstPost) `mappend`
-                    --(bodyField . itemBody) firstPost `mappend`
-                    defaultContext
+                    boolField "map" (const hasMap) `mappend`
+                    listField "firstPost" postCtx (return firstPostContent) `mappend`
+                    listField "posts" postCtx (return posts) `mappend`
+                    postCtx
 
             getResourceBody
                 >>= applyAsTemplate indexCtx
@@ -109,7 +112,7 @@ main = hakyll $ do
       route idRoute
       compile $ do
           let feedCtx = postCtx `mappend` bodyField "description"
-          posts <- fmap (take 20) . recentFirst =<<
+          posts <- fmap (take 20) . recentFirst =<< filterDrafts =<<
               loadAllSnapshots "posts/*" "content"
           renderAtom feedConfiguration feedCtx posts
 
@@ -118,7 +121,9 @@ main = hakyll $ do
 postCtx :: Context String
 postCtx =
     dateField "date" "%B %e, %Y" `mappend`
-    defaultContext
+    defaultContext `mappend`
+    boolField "draft" (const False) `mappend`
+    boolField "map" (const False)
 
 postCtxWithTags :: Tags -> Context String
 postCtxWithTags tags = hasTagsField `mappend` tagsField "tags" tags `mappend` postCtx
@@ -139,3 +144,12 @@ cleanIndex url
     | idx `isSuffixOf` url = take (length url - length idx) url
     | otherwise            = url
   where idx = "index.html"
+
+filterDrafts :: (MonadMetadata m) => [Item a] -> m [Item a]
+filterDrafts items = filterM (pure.not <=< isDraft) items
+  where isDraft :: (MonadMetadata m) => Item a -> m Bool
+        isDraft (Item id _) = do
+          df <- getMetadataField id "draft"
+          case (== "true") <$> df of
+            Just True -> return True
+            _ -> return False

@@ -105,3 +105,13 @@ pre code {
     font-style: normal;
     text-decoration: none;
 }
+
+.leaflet-map-wrapper {
+    height: 30vw;
+    min-height: 200px;
+    font-style: italic;
+}
+.leaflet-map-wrapper a {
+    font-size: 11px;
+    font-style: normal;
+}
