@@ -26,4 +26,4 @@ deploy:
   repo: mo-gr/mo-gr.github.com
   target_branch: travis
   on:
-    branch: travis
+    branch: map-and-draft
