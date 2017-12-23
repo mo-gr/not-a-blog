@@ -25,5 +25,5 @@ deploy:
   local_dir: _site
   repo: mo-gr/mo-gr.github.com
   target_branch: travis
-  #on:
-    #branch: master
+  on:
+    branch: travis
