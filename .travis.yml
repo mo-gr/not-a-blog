@@ -15,4 +15,15 @@ install:
 - stack install
 
 script:
-- make publish
+- make clean
+- stack exec site rebuild
+
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: $GITHUB_TOKEN # Set in travis-ci.org dashboard
+  local_dir: _site
+  repo: mo-gr/mo-gr.github.com
+  target_branch: travis
+  #on:
+    #branch: master
