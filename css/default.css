@@ -88,9 +88,18 @@ img {
     margin: 0 auto;
 }
 
+p.caption {
+    font-style: italic;
+    margin: 0;
+    width: 100%;
+    text-align: right;
+    font-size: 1rem;
+}
+
 .figure {
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
 }
 
 pre code {
