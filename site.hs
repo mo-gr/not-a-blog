@@ -32,7 +32,7 @@ main = hakyll $ do
         route   idRoute
         compile compressCssCompiler
 
-    match (fromList ["CNAME", "404.html", "robots.txt"]) $ do
+    match (fromList ["CNAME", "404.html", "robots.txt", "favicon.ico"]) $ do
         route   idRoute
         compile copyFileCompiler
 
