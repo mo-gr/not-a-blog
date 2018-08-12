@@ -23,6 +23,7 @@ deploy:
   access_key_id: "$AWS_ACCESS"
   secret_access_key: "$AWS_SECRET"
   bucket: "blog.notadomain.com"
+  region: eu-central-1
   skip_cleanup: true
   acl: public_read
   local_dir: _site
